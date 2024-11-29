@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Mouse Hover Event</title>
+</head>
+<body>
+        <h1 id="txt" onmouseover="myfunction1()" onmouseout="myfunction2()">myprogram</h1>
+        <img id="image" src="supra.jpg" alt="Image" onmouseover="myfunction1()" onmouseout="myfunction2()">
+       
+    <script>
+    function myfunction1() {
+       document.getElementById('image').src = "gtr1.jpg";
+       document.getElementById('txt').innerHTML = "IMG 2";
+    }
+
+    function myfunction2() {
+       document.getElementById('image').src = "supra.jpg";
+       document.getElementById('txt').innerHTML = "IMG 1";
+    }
+    </script>
+</body>
+</html>
+

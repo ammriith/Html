@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>Calendar</title>
+</head>
+<body>
+  <h1>Calendar</h1>
+  <label>Year:</label>
+  <input type="text" id="year">
+  <br><br>
+  <button type="submit" onclick="displayCalendar()">Submit</button>
+  <div id="result"></div>
+
+  <script>
+    function generateCalendar() {
+      const year = document.getElementById("year").value;
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      let calendar = "";
+      
+      for (let month = 0; month < 12; month++) {
+        const firstDay = new Date(year, month, 1).getDay(); 
+        const daysInMonth = new Date(year, month + 1, 0).getDate(); 
+        const lastDay = new Date(year, month + 1, 0).getDay(); 
+        
+        calendar += `<table border='1'><tr><th colspan="7">${months[month]}</th></tr><tr>`;
+        
+        for (let day of days) {
+          calendar += `<th>${day}</th>`;
+        }
+        calendar += "</tr><tr>";
+        
+        for (let i = 0; i < firstDay; i++) {
+          calendar += "<td></td>";
+        }
+        
+        for (let date = 1; date <= daysInMonth; date++) {
+          calendar += `<td>${date}</td>`;
+          
+          if ((date + firstDay) % 7 == 0) {
+            calendar += "</tr><tr>";
+          }
+        }
+        
+        if (lastDay != 6) {
+          for (let i = lastDay + 1; i <= 6; i++) {
+            calendar += "<td></td>";
+          }
+        }
+        
+        calendar += "</tr></table><br>";
+      }
+      
+      return calendar;
+    }
+
+    function displayCalendar() {
+      const result = document.getElementById("result");
+      result.innerHTML = generateCalendar(); 
+    }
+  </script>
+</body>
+</html>
+
